@@ -28,7 +28,6 @@ using DOOR.Shared.DTO;
 using DOOR.Shared.Utils;
 using DOOR.Server.Controllers.Common;
 
-
 namespace CSBA6.Server.Controllers.app
 {
     [ApiController]
