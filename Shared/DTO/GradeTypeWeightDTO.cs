@@ -10,11 +10,15 @@ using System.Threading.Tasks;
 
 namespace DOOR.Shared.DTO
 {
-    public class SchoolDTO
+    public class GradeTypeWeightDTO
     {
         public int SchoolId { get; set; }
-        [StringLength(30)]
-        public string SchoolName { get; set; } = null!;
+        public int SectionId { get; set; }
+        [StringLength(2)]
+        public string GradeTypeCode { get; set; } = null!;
+        public byte NumberPerSection { get; set; }
+        public byte PercentOfFinalGrade { get; set; }
+        public bool DropLowest { get; set; }
         [StringLength(30)]
         public string CreatedBy { get; set; } = null!;
         public DateTime CreatedDate { get; set; }

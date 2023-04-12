@@ -10,12 +10,24 @@ using System.Threading.Tasks;
 
 namespace DOOR.Shared.DTO
 {
-    public class EnrollmentDTO
+    public class StudentDTO
     {
         public int StudentId { get; set; }
-        public int SectionId { get; set; }
-        public DateTime EnrollDate { get; set; }
-        public byte? FinalGrade { get; set; }
+        [StringLength(5)]
+        public string? Salutation { get; set; }
+        [StringLength(25)]
+        public string? FirstName { get; set; }
+        [StringLength(25)]
+        public string LastName { get; set; } = null!;
+        [StringLength(50)]
+        public string? StreetAddress { get; set; }
+        [StringLength(5)]
+        public string Zip { get; set; } = null!;
+        [StringLength(15)]
+        public string? Phone { get; set; }
+        [StringLength(50)]
+        public string? Employer { get; set; }
+        public DateTime RegistrationDate { get; set; }
         [StringLength(30)]
         public string CreatedBy { get; set; } = null!;
         public DateTime CreatedDate { get; set; }

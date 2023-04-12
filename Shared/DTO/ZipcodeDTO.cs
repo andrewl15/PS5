@@ -10,11 +10,13 @@ using System.Threading.Tasks;
 
 namespace DOOR.Shared.DTO
 {
-    public class SchoolDTO
+    public class ZipcodeDTO
     {
-        public int SchoolId { get; set; }
-        [StringLength(30)]
-        public string SchoolName { get; set; } = null!;
+        public string Zip { get; set; } = null!;
+        [StringLength(25)]
+        public string? City { get; set; }
+        [StringLength(2)]
+        public string? State { get; set; }
         [StringLength(30)]
         public string CreatedBy { get; set; } = null!;
         public DateTime CreatedDate { get; set; }
