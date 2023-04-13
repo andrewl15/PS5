@@ -172,7 +172,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                Grade? c = await _context.Grades.Where(x => x.SchoolId == _StudentID && x.GradeCodeOccurrence == _GradeCodeOccurrence && x.StudentId == _StudentID && x.SectionId == _SectionID && x.GradeTypeCode == _GradeTypeCode).FirstOrDefaultAsync();
+                Grade? c = await _context.Grades.Where(x => x.SchoolId == _SchoolID && x.GradeCodeOccurrence == _GradeCodeOccurrence && x.StudentId == _StudentID && x.SectionId == _SectionID && x.GradeTypeCode == _GradeTypeCode).FirstOrDefaultAsync();
 
                 if (c != null)
                 {

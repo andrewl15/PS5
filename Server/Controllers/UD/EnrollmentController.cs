@@ -165,11 +165,11 @@ namespace DOOR.Server.Controllers.UD
 
         [HttpDelete]
         [Route("DeleteEnrollment/{_StudentId}/{_SectionId}/{_SchoolId}")]
-        public async Task<IActionResult> DeleteEnrollment(int _StudentId)
+        public async Task<IActionResult> DeleteEnrollment(int _StudentId, int _SectionId, int _SchoolId)
         {
             try
             {
-                Enrollment? c = await _context.Enrollments.Where(x => x.StudentId == _StudentId && x.SectionId == _StudentId && x.SchoolId == _StudentId).FirstOrDefaultAsync();
+                Enrollment? c = await _context.Enrollments.Where(x => x.StudentId == _StudentId && x.SectionId == _SectionId && x.SchoolId == _SchoolId).FirstOrDefaultAsync();
 
                 if (c != null)
                 {

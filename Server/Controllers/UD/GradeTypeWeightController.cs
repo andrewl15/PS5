@@ -63,11 +63,11 @@ namespace DOOR.Server.Controllers.UD
         }
 
         [HttpGet]
-        [Route("GetGradeTypeWeight/{_SchoolID}/{_SectionID}/{_Grade_Type_Code}")]
-        public async Task<IActionResult> GetGradeTypeWeight(int _SchoolId, int _SectionID, string _Grade_Type_Code)
+        [Route("GetGradeTypeWeight/{_SchoolID}/{_SectionID}/{_GradeTypeCode}")]
+        public async Task<IActionResult> GetGradeTypeWeight(int _SchoolId, int _SectionID, string _GradeTypeCode)
         {
             GradeTypeWeightDTO? lst = await _context.GradeTypeWeights
-                .Where(x => x.SchoolId == _SchoolId && x.SectionId == _SectionID && x.GradeTypeCode == _Grade_Type_Code)
+                .Where(x => x.SchoolId == _SchoolId && x.SectionId == _SectionID && x.GradeTypeCode == _GradeTypeCode)
                 .Select(sp => new GradeTypeWeightDTO
                 {
                     CreatedBy = sp.CreatedBy,
@@ -167,12 +167,12 @@ namespace DOOR.Server.Controllers.UD
 
 
         [HttpDelete]
-        [Route("DeleteGradeTypeWeight/{_SchoolID}/{_SectionID}/{_Grade_Type_Code}")]
-        public async Task<IActionResult> DeleteGradeTypeWeight(int _SchoolId, int _SectionId, string _Grade_Type_Code)
+        [Route("DeleteGradeTypeWeight/{_SchoolID}/{_SectionID}/{_GradeTypeCode}")]
+        public async Task<IActionResult> DeleteGradeTypeWeight(int _SchoolId, int _SectionId, string _GradeTypeCode)
         {
             try
             {
-                GradeTypeWeight? c = await _context.GradeTypeWeights.Where(x => x.SchoolId == _SchoolId && x.SectionId == _SectionId && x.GradeTypeCode == _Grade_Type_Code).FirstOrDefaultAsync();
+                GradeTypeWeight? c = await _context.GradeTypeWeights.Where(x => x.SchoolId == _SchoolId && x.SectionId == _SectionId && x.GradeTypeCode == _GradeTypeCode).FirstOrDefaultAsync();
 
                 if (c != null)
                 {
