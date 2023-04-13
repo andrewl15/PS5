@@ -62,11 +62,11 @@ namespace DOOR.Server.Controllers.UD
         }
 
         [HttpGet]
-        [Route("GetEnrollment/{_StudentId")]
-        public async Task<IActionResult> GetEnrollment(int _StudentId)
+        [Route("GetEnrollment/{_StudentID}/{_SectionId}/{_SchoolId}")]
+        public async Task<IActionResult> GetEnrollment(int _StudentID, int _SectionId, int _SchoolId)
         {
             EnrollmentDTO? lst = await _context.Enrollments
-                .Where(x => x.StudentId == _StudentId)
+                .Where(x => x.StudentId == _StudentID && x.SectionId == _SectionId && x.SchoolId == _SchoolId)
                 .Select(sp => new EnrollmentDTO
                 {
                     CreatedBy = sp.CreatedBy,
@@ -82,13 +82,14 @@ namespace DOOR.Server.Controllers.UD
             return Ok(lst);
         }
 
+        ///
         [HttpPost]
         [Route("PostEnrollment")]
         public async Task<IActionResult> PostEnrollment([FromBody] EnrollmentDTO _EnrollmentDTO)
         {
             try
             {
-                Enrollment? c = await _context.Enrollments.Where(x => x.StudentId == _EnrollmentDTO.StudentId).FirstOrDefaultAsync();
+                Enrollment? c = await _context.Enrollments.Where(x => x.StudentId == _EnrollmentDTO.StudentId && x.SchoolId == _EnrollmentDTO.SchoolId && x.SectionId == _EnrollmentDTO.SectionId).FirstOrDefaultAsync();
 
                 if (c == null)
                 {
@@ -119,13 +120,20 @@ namespace DOOR.Server.Controllers.UD
             return Ok();
         }
 
+
+
+
+
+
+
+
         [HttpPut]
         [Route("PutEnrollment")]
-        public async Task<IActionResult> PutEnrollment([FromBody] EnrollmentDTO _EnrollmentDTO)
+        public async Task<IActionResult> PutCourse([FromBody] EnrollmentDTO _EnrollmentDTO)
         {
             try
             {
-                Enrollment? c = await _context.Enrollments.Where(x => x.StudentId == _EnrollmentDTO.StudentId).FirstOrDefaultAsync();
+                Enrollment? c = await _context.Enrollments.Where(x => x.StudentId == _EnrollmentDTO.StudentId && x.SchoolId == _EnrollmentDTO.SchoolId && x.SectionId == _EnrollmentDTO.SectionId).FirstOrDefaultAsync();
 
                 if (c != null)
                 {
@@ -156,12 +164,12 @@ namespace DOOR.Server.Controllers.UD
 
 
         [HttpDelete]
-        [Route("DeleteEnrollment/{_StudentId}")]
+        [Route("DeleteEnrollment/{_StudentId}/{_SectionId}/{_SchoolId}")]
         public async Task<IActionResult> DeleteEnrollment(int _StudentId)
         {
             try
             {
-                Enrollment? c = await _context.Enrollments.Where(x => x.StudentId == _StudentId).FirstOrDefaultAsync();
+                Enrollment? c = await _context.Enrollments.Where(x => x.StudentId == _StudentId && x.SectionId == _StudentId && x.SchoolId == _StudentId).FirstOrDefaultAsync();
 
                 if (c != null)
                 {
@@ -186,7 +194,6 @@ namespace DOOR.Server.Controllers.UD
 
             return Ok();
         }
-
 
     }
 }

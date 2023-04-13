@@ -64,11 +64,11 @@ namespace DOOR.Server.Controllers.UD
         }
 
         [HttpGet]
-        [Route("GetGrade/{_SchoolId")]
-        public async Task<IActionResult> GetGrade(int _SchoolId)
+        [Route("GetGrade/{_SchoolID}/{_GradeCodeOccurrence}/{_GradeTypeCode}/{_SectionID}/{_StudentID}")]
+        public async Task<IActionResult> GetGrade(int _SchoolID, byte _GradeCodeOccurrence, int _StudentID, int _SectionID, string _GradeTypeCode)
         {
             GradeDTO? lst = await _context.Grades
-                .Where(x => x.SchoolId == _SchoolId)
+                .Where(x => x.SchoolId == _SchoolID && x.GradeCodeOccurrence == _GradeCodeOccurrence && x.StudentId == _StudentID && x.SectionId == _SectionID && x.GradeTypeCode == _GradeTypeCode)
                 .Select(sp => new GradeDTO
                 {
                     GradeCodeOccurrence = sp.GradeCodeOccurrence,
@@ -92,7 +92,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                Grade? c = await _context.Grades.Where(x => x.SchoolId == _GradeDTO.StudentId).FirstOrDefaultAsync();
+                Grade? c = await _context.Grades.Where(x => x.SchoolId == _GradeDTO.StudentId && x.GradeCodeOccurrence == _GradeDTO.GradeCodeOccurrence && x.StudentId == _GradeDTO.StudentId && x.SectionId == _GradeDTO.SectionId && x.GradeTypeCode == _GradeDTO.GradeTypeCode).FirstOrDefaultAsync();
 
                 if (c == null)
                 {
@@ -136,7 +136,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                Grade? c = await _context.Grades.Where(x => x.StudentId == _GradeDTO.StudentId).FirstOrDefaultAsync();
+                Grade? c = await _context.Grades.Where(x => x.SchoolId == _GradeDTO.StudentId && x.GradeCodeOccurrence == _GradeDTO.GradeCodeOccurrence && x.StudentId == _GradeDTO.StudentId && x.SectionId == _GradeDTO.SectionId && x.GradeTypeCode == _GradeDTO.GradeTypeCode).FirstOrDefaultAsync();
 
                 if (c != null)
                 {
@@ -167,12 +167,12 @@ namespace DOOR.Server.Controllers.UD
 
 
         [HttpDelete]
-        [Route("DeleteGrade/{_StudentId}")]
-        public async Task<IActionResult> DeleteGrade(int _StudentId)
+        [Route("DeleteGrade/{_SchoolID}/{_GradeCodeOccurrence}/{_GradeTypeCode}/{_SectionID}/{_StudentID}")]
+        public async Task<IActionResult> DeleteGrade(int _SchoolID, byte _GradeCodeOccurrence, int _StudentID, int _SectionID, string _GradeTypeCode)
         {
             try
             {
-                Grade? c = await _context.Grades.Where(x => x.StudentId == _StudentId).FirstOrDefaultAsync();
+                Grade? c = await _context.Grades.Where(x => x.SchoolId == _StudentID && x.GradeCodeOccurrence == _GradeCodeOccurrence && x.StudentId == _StudentID && x.SectionId == _SectionID && x.GradeTypeCode == _GradeTypeCode).FirstOrDefaultAsync();
 
                 if (c != null)
                 {

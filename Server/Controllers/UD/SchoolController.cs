@@ -59,7 +59,7 @@ namespace DOOR.Server.Controllers.UD
         }
 
         [HttpGet]
-        [Route("GetSchool/{_SchoolId")]
+        [Route("GetSchool/{_SchoolId}")]
         public async Task<IActionResult> GetSchool(int _SchoolId)
         {
             SchoolDTO? lst = await _context.Schools

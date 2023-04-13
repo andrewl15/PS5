@@ -62,11 +62,11 @@ namespace DOOR.Server.Controllers.UD
         }
 
         [HttpGet]
-        [Route("GetGradeConversion/{_SchoolId")]
-        public async Task<IActionResult> GetGradeConversion(int _SchoolId)
+        [Route("GetGradeConversion/{_SchoolId}/{Letter_Grade}")]
+        public async Task<IActionResult> GetGradeConversion(int _SchoolId, string _Letter_Grade)
         {
             GradeConversionDTO? lst = await _context.GradeConversions
-                .Where(x => x.SchoolId == _SchoolId)
+                .Where(x => x.SchoolId == _SchoolId && x.LetterGrade == _Letter_Grade)
                 .Select(sp => new GradeConversionDTO
                 {
                     CreatedBy = sp.CreatedBy,
@@ -88,7 +88,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                GradeConversion? c = await _context.GradeConversions.Where(x => x.SchoolId == _GradeConversionDTO.SchoolId).FirstOrDefaultAsync();
+                GradeConversion? c = await _context.GradeConversions.Where(x => x.SchoolId == _GradeConversionDTO.SchoolId && x.LetterGrade == _GradeConversionDTO.LetterGrade).FirstOrDefaultAsync();
 
                 if (c == null)
                 {
@@ -133,7 +133,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                GradeConversion? c = await _context.GradeConversions.Where(x => x.SchoolId == _GradeConversionDTO.SchoolId).FirstOrDefaultAsync();
+                GradeConversion? c = await _context.GradeConversions.Where(x => x.SchoolId == _GradeConversionDTO.SchoolId && x.LetterGrade == _GradeConversionDTO.LetterGrade).FirstOrDefaultAsync();
 
                 if (c != null)
                 {
@@ -165,12 +165,12 @@ namespace DOOR.Server.Controllers.UD
 
 
         [HttpDelete]
-        [Route("DeleteGradeConversion/{_SchoolId}")]
-        public async Task<IActionResult> DeleteGradeConversion(int _SchoolId)
+        [Route("DeleteGradeConversion/{_SchoolId}/{Letter_Grade}")]
+        public async Task<IActionResult> DeleteGradeConversion(int _SchoolId, string _Letter_Grade)
         {
             try
             {
-                GradeConversion? c = await _context.GradeConversions.Where(x => x.SchoolId == _SchoolId).FirstOrDefaultAsync();
+                GradeConversion? c = await _context.GradeConversions.Where(x => x.SchoolId == _SchoolId && x.LetterGrade == _Letter_Grade).FirstOrDefaultAsync();
 
                 if (c != null)
                 {

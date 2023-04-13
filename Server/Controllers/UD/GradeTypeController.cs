@@ -60,11 +60,11 @@ namespace DOOR.Server.Controllers.UD
         }
 
         [HttpGet]
-        [Route("GetGradeType/{_SchoolId}")]
-        public async Task<IActionResult> GetGradeType(int _SchoolId)
+        [Route("GetGradeType/{_SchoolId}/{_GradeTypeCode}")]
+        public async Task<IActionResult> GetGradeType(int _SchoolId, string _GradeTypeCode)
         {
             GradeTypeDTO? lst = await _context.GradeTypes
-                .Where(x => x.SchoolId == _SchoolId)
+                .Where(x => x.SchoolId == _SchoolId && x.GradeTypeCode == _GradeTypeCode)
                 .Select(sp => new GradeTypeDTO
                 {
                     CreatedBy = sp.CreatedBy,
@@ -84,7 +84,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                GradeType? c = await _context.GradeTypes.Where(x => x.SchoolId == _GradeTypeDTO.SchoolId).FirstOrDefaultAsync();
+                GradeType? c = await _context.GradeTypes.Where(x => x.SchoolId == _GradeTypeDTO.SchoolId && x.GradeTypeCode == _GradeTypeDTO.GradeTypeCode).FirstOrDefaultAsync();
 
                 if (c == null)
                 {
@@ -127,7 +127,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                GradeType? c = await _context.GradeTypes.Where(x => x.SchoolId == _GradeTypeDTO.SchoolId).FirstOrDefaultAsync();
+                GradeType? c = await _context.GradeTypes.Where(x => x.SchoolId == _GradeTypeDTO.SchoolId && x.GradeTypeCode == _GradeTypeDTO.GradeTypeCode).FirstOrDefaultAsync();
 
                 if (c != null)
                 {
@@ -157,12 +157,12 @@ namespace DOOR.Server.Controllers.UD
 
 
         [HttpDelete]
-        [Route("DeleteGradeType/{_SchoolId}")]
-        public async Task<IActionResult> DeleteGradeType(int _SchoolId)
+        [Route("DeleteGradeType/{_SchoolId}/{_GradeTypeCode}")]
+        public async Task<IActionResult> DeleteGradeType(int _SchoolId, string _GradeTypeCode)
         {
             try
             {
-                GradeType? c = await _context.GradeTypes.Where(x => x.SchoolId == _SchoolId).FirstOrDefaultAsync();
+                GradeType? c = await _context.GradeTypes.Where(x => x.SchoolId == _SchoolId && x.GradeTypeCode == _GradeTypeCode).FirstOrDefaultAsync();
 
                 if (c != null)
                 {

@@ -22,5 +22,7 @@ namespace DOOR.Shared.DTO
 
         public string ModifiedBy { get; set; } = null!;
         public DateTime ModifiedDate { get; set; }
+
+        public int SchoolId { get; set; }
     }
 }

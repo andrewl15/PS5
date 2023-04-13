@@ -67,11 +67,11 @@ namespace DOOR.Server.Controllers.UD
         }
 
         [HttpGet]
-        [Route("GetStudent/{_StudentId}")]
-        public async Task<IActionResult> GetZipcode(int _StudentId)
+        [Route("GetStudent/{_StudentId}/{_SchoolId}")]
+        public async Task<IActionResult> GetZipcode(int _StudentId, int _SchoolId)
         {
             StudentDTO? lst = await _context.Students
-                .Where(x => x.StudentId == _StudentId)
+                .Where(x => x.StudentId == _StudentId && x.SchoolId == _SchoolId)
                 .Select(sp => new StudentDTO
                 {
                     Zip = sp.Zip,
@@ -98,7 +98,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                Student? c = await _context.Students.Where(x => x.StudentId == _StudentDTO.StudentId).FirstOrDefaultAsync();
+                Student? c = await _context.Students.Where(x => x.StudentId == _StudentDTO.StudentId && x.SchoolId == _StudentDTO.SchoolId).FirstOrDefaultAsync();
 
                 if (c == null)
                 {
@@ -148,7 +148,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                Student? c = await _context.Students.Where(x => x.StudentId == _StudentDTO.StudentId).FirstOrDefaultAsync();
+                Student? c = await _context.Students.Where(x => x.StudentId == _StudentDTO.StudentId && x.SchoolId == _StudentDTO.SchoolId).FirstOrDefaultAsync();
 
                 if (c != null)
                 {
@@ -185,12 +185,12 @@ namespace DOOR.Server.Controllers.UD
 
 
         [HttpDelete]
-        [Route("DeleteStudent/{_StudentId}")]
-        public async Task<IActionResult> DeleteStudent(int _StudentId)
+        [Route("DeleteStudent/{_StudentId}/{_SchoolId}")]
+        public async Task<IActionResult> DeleteStudent(int _StudentId, int _SchoolId)
         {
             try
             {
-                Student? c = await _context.Students.Where(x => x.StudentId == _StudentId).FirstOrDefaultAsync();
+                Student? c = await _context.Students.Where(x => x.StudentId == _StudentId && x.SchoolId == _SchoolId).FirstOrDefaultAsync();
 
                 if (c != null)
                 {

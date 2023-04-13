@@ -63,11 +63,11 @@ namespace CSBA6.Server.Controllers.app
 
 
         [HttpGet]
-        [Route("GetCourse/{_CourseNo}")]
-        public async Task<IActionResult> GetCourse(int _CourseNo)
+        [Route("GetCourse/{_CourseNo}/{_SchoolId}")]
+        public async Task<IActionResult> GetCourse(int _CourseNo, int _SchoolId)
         {
             CourseDTO? lst = await _context.Courses
-                .Where(x => x.CourseNo == _CourseNo)
+                .Where(x => x.CourseNo == _CourseNo && x.SchoolId == _SchoolId)
                 .Select(sp => new CourseDTO
                 {
                     Cost = sp.Cost,
@@ -89,7 +89,7 @@ namespace CSBA6.Server.Controllers.app
         {
             try
             {
-                Course? c = await _context.Courses.Where(x => x.CourseNo == _CourseDTO.CourseNo).FirstOrDefaultAsync();
+                Course? c = await _context.Courses.Where(x => x.CourseNo == _CourseDTO.CourseNo && x.SchoolId == _CourseDTO.SchoolId).FirstOrDefaultAsync();
 
                 if (c == null)
                 {
@@ -134,7 +134,7 @@ namespace CSBA6.Server.Controllers.app
         {
             try
             {
-                Course? c = await _context.Courses.Where(x => x.CourseNo == _CourseDTO.CourseNo).FirstOrDefaultAsync();
+                Course? c = await _context.Courses.Where(x => x.CourseNo == _CourseDTO.CourseNo && x.SchoolId == _CourseDTO.SchoolId).FirstOrDefaultAsync();
 
                 if (c != null)
                 {
@@ -166,12 +166,12 @@ namespace CSBA6.Server.Controllers.app
 
 
         [HttpDelete]
-        [Route("DeleteCourse/{_CourseNo}")]
-        public async Task<IActionResult> DeleteCourse(int _CourseNo)
+        [Route("DeleteCourse/{_CourseNo}/{_SchoolId}")]
+        public async Task<IActionResult> DeleteCourse(int _CourseNo, int _SchoolId)
         {
             try
             {
-                Course? c = await _context.Courses.Where(x => x.CourseNo == _CourseNo).FirstOrDefaultAsync();
+                Course? c = await _context.Courses.Where(x => x.CourseNo == _CourseNo && x.SchoolId == _SchoolId).FirstOrDefaultAsync();
 
                 if (c != null)
                 {
