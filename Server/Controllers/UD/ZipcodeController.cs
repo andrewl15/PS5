@@ -42,7 +42,7 @@ namespace DOOR.Server.Controllers.UD
         }
 
         [HttpGet]
-        [Route("Zipcode")]
+        [Route("GetZipcode")]
         public async Task<IActionResult> GetZipcode()
         {
             List<ZipcodeDTO> lst = await _context.Zipcodes
