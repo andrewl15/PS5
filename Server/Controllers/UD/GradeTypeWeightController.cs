@@ -90,7 +90,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                GradeTypeWeight c = await _context.GradeTypeWeights.Where(x => x.SchoolId == _GradeTypeWeightDTO.SchoolId).FirstOrDefaultAsync();
+                GradeTypeWeight? c = await _context.GradeTypeWeights.Where(x => x.SchoolId == _GradeTypeWeightDTO.SchoolId).FirstOrDefaultAsync();
 
                 if (c == null)
                 {
@@ -135,7 +135,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                GradeTypeWeight c = await _context.GradeTypeWeights.Where(x => x.SchoolId == _GradeTypeWeightDTO.SchoolId).FirstOrDefaultAsync();
+                GradeTypeWeight? c = await _context.GradeTypeWeights.Where(x => x.SchoolId == _GradeTypeWeightDTO.SchoolId).FirstOrDefaultAsync();
 
                 if (c != null)
                 {
@@ -172,7 +172,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                GradeTypeWeight c = await _context.GradeTypeWeights.Where(x => x.SchoolId == _SchoolId).FirstOrDefaultAsync();
+                GradeTypeWeight? c = await _context.GradeTypeWeights.Where(x => x.SchoolId == _SchoolId).FirstOrDefaultAsync();
 
                 if (c != null)
                 {

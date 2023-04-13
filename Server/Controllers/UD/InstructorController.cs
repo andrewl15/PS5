@@ -94,7 +94,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                Instructor c = await _context.Instructors.Where(x => x.SchoolId == _InstructorDTO.SchoolId).FirstOrDefaultAsync();
+                Instructor? c = await _context.Instructors.Where(x => x.SchoolId == _InstructorDTO.SchoolId).FirstOrDefaultAsync();
 
                 if (c == null)
                 {
@@ -142,7 +142,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                Instructor c = await _context.Instructors.Where(x => x.SchoolId == _InstructorDTO.SchoolId).FirstOrDefaultAsync();
+                Instructor? c = await _context.Instructors.Where(x => x.SchoolId == _InstructorDTO.SchoolId).FirstOrDefaultAsync();
 
                 if (c != null)
                 {
@@ -182,7 +182,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                Instructor c = await _context.Instructors.Where(x => x.SchoolId == _SchoolId).FirstOrDefaultAsync();
+                Instructor? c = await _context.Instructors.Where(x => x.SchoolId == _SchoolId).FirstOrDefaultAsync();
 
                 if (c != null)
                 {

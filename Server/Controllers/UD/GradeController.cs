@@ -92,7 +92,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                Grade c = await _context.Grades.Where(x => x.SchoolId == _GradeDTO.StudentId).FirstOrDefaultAsync();
+                Grade? c = await _context.Grades.Where(x => x.SchoolId == _GradeDTO.StudentId).FirstOrDefaultAsync();
 
                 if (c == null)
                 {
@@ -136,7 +136,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                Grade c = await _context.Grades.Where(x => x.StudentId == _GradeDTO.StudentId).FirstOrDefaultAsync();
+                Grade? c = await _context.Grades.Where(x => x.StudentId == _GradeDTO.StudentId).FirstOrDefaultAsync();
 
                 if (c != null)
                 {
@@ -172,7 +172,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                Grade c = await _context.Grades.Where(x => x.StudentId == _StudentId).FirstOrDefaultAsync();
+                Grade? c = await _context.Grades.Where(x => x.StudentId == _StudentId).FirstOrDefaultAsync();
 
                 if (c != null)
                 {

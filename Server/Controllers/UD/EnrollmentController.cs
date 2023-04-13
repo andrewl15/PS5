@@ -88,7 +88,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                Enrollment c = await _context.Enrollments.Where(x => x.StudentId == _EnrollmentDTO.StudentId).FirstOrDefaultAsync();
+                Enrollment? c = await _context.Enrollments.Where(x => x.StudentId == _EnrollmentDTO.StudentId).FirstOrDefaultAsync();
 
                 if (c == null)
                 {
@@ -125,7 +125,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                Enrollment c = await _context.Enrollments.Where(x => x.StudentId == _EnrollmentDTO.StudentId).FirstOrDefaultAsync();
+                Enrollment? c = await _context.Enrollments.Where(x => x.StudentId == _EnrollmentDTO.StudentId).FirstOrDefaultAsync();
 
                 if (c != null)
                 {
@@ -161,7 +161,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                Enrollment c = await _context.Enrollments.Where(x => x.StudentId == _StudentId).FirstOrDefaultAsync();
+                Enrollment? c = await _context.Enrollments.Where(x => x.StudentId == _StudentId).FirstOrDefaultAsync();
 
                 if (c != null)
                 {

@@ -89,7 +89,7 @@ namespace CSBA6.Server.Controllers.app
         {
             try
             {
-                Course c = await _context.Courses.Where(x => x.CourseNo == _CourseDTO.CourseNo).FirstOrDefaultAsync();
+                Course? c = await _context.Courses.Where(x => x.CourseNo == _CourseDTO.CourseNo).FirstOrDefaultAsync();
 
                 if (c == null)
                 {
@@ -134,7 +134,7 @@ namespace CSBA6.Server.Controllers.app
         {
             try
             {
-                Course c = await _context.Courses.Where(x => x.CourseNo == _CourseDTO.CourseNo).FirstOrDefaultAsync();
+                Course? c = await _context.Courses.Where(x => x.CourseNo == _CourseDTO.CourseNo).FirstOrDefaultAsync();
 
                 if (c != null)
                 {
@@ -171,7 +171,7 @@ namespace CSBA6.Server.Controllers.app
         {
             try
             {
-                Course c = await _context.Courses.Where(x => x.CourseNo == _CourseNo).FirstOrDefaultAsync();
+                Course? c = await _context.Courses.Where(x => x.CourseNo == _CourseNo).FirstOrDefaultAsync();
 
                 if (c != null)
                 {

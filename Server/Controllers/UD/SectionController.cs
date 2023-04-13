@@ -94,7 +94,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                Section c = await _context.Sections.Where(x => x.SectionId == _SectionDTO.SectionId).FirstOrDefaultAsync();
+                Section? c = await _context.Sections.Where(x => x.SectionId == _SectionDTO.SectionId).FirstOrDefaultAsync();
 
                 if (c == null)
                 {
@@ -143,7 +143,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                Section c = await _context.Sections.Where(x => x.SectionId == _SectionDTO.SectionId).FirstOrDefaultAsync();
+                Section? c = await _context.Sections.Where(x => x.SectionId == _SectionDTO.SectionId).FirstOrDefaultAsync();
 
                 if (c != null)
                 {
@@ -183,7 +183,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                Section c = await _context.Sections.Where(x => x.SectionId == _SectionId).FirstOrDefaultAsync();
+                Section? c = await _context.Sections.Where(x => x.SectionId == _SectionId).FirstOrDefaultAsync();
 
                 if (c != null)
                 {

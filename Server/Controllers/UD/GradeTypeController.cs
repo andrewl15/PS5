@@ -84,7 +84,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                GradeType c = await _context.GradeTypes.Where(x => x.SchoolId == _GradeTypeDTO.SchoolId).FirstOrDefaultAsync();
+                GradeType? c = await _context.GradeTypes.Where(x => x.SchoolId == _GradeTypeDTO.SchoolId).FirstOrDefaultAsync();
 
                 if (c == null)
                 {
@@ -127,7 +127,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                GradeType c = await _context.GradeTypes.Where(x => x.SchoolId == _GradeTypeDTO.SchoolId).FirstOrDefaultAsync();
+                GradeType? c = await _context.GradeTypes.Where(x => x.SchoolId == _GradeTypeDTO.SchoolId).FirstOrDefaultAsync();
 
                 if (c != null)
                 {
@@ -162,7 +162,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                GradeType c = await _context.GradeTypes.Where(x => x.SchoolId == _SchoolId).FirstOrDefaultAsync();
+                GradeType? c = await _context.GradeTypes.Where(x => x.SchoolId == _SchoolId).FirstOrDefaultAsync();
 
                 if (c != null)
                 {

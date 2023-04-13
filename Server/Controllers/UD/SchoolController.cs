@@ -82,7 +82,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                School c = await _context.Schools.Where(x => x.SchoolId == _SchoolDTO.SchoolId).FirstOrDefaultAsync();
+                School? c = await _context.Schools.Where(x => x.SchoolId == _SchoolDTO.SchoolId).FirstOrDefaultAsync();
 
                 if (c == null)
                 {
@@ -125,7 +125,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                School c = await _context.Schools.Where(x => x.SchoolId == _SchoolDTO.SchoolId).FirstOrDefaultAsync();
+                School? c = await _context.Schools.Where(x => x.SchoolId == _SchoolDTO.SchoolId).FirstOrDefaultAsync();
 
                 if (c != null)
                 {
@@ -160,7 +160,7 @@ namespace DOOR.Server.Controllers.UD
         {
             try
             {
-                School c = await _context.Schools.Where(x => x.SchoolId == _SchoolId).FirstOrDefaultAsync();
+                School? c = await _context.Schools.Where(x => x.SchoolId == _SchoolId).FirstOrDefaultAsync();
 
                 if (c != null)
                 {
