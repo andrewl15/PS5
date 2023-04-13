@@ -42,7 +42,7 @@ namespace DOOR.Server.Controllers.UD
         }
 
         [HttpGet]
-        [Route("Student")]
+        [Route("GetStudent")]
         public async Task<IActionResult> GetStudent()
         {
             List<StudentDTO> lst = await _context.Students

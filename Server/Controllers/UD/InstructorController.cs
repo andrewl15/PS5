@@ -42,7 +42,7 @@ namespace DOOR.Server.Controllers.UD
         }
 
         [HttpGet]
-        [Route("Instructor")]
+        [Route("GetInstructor")]
         public async Task<IActionResult> GetInstructor()
         {
             List<InstructorDTO> lst = await _context.Instructors
