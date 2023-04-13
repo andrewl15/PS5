@@ -60,11 +60,11 @@ namespace DOOR.Server.Controllers.UD
         }
 
         [HttpGet]
-        [Route("GetGradeType/{_SchoolID}")]
-        public async Task<IActionResult> GetGradeType(int _SchoolID)
+        [Route("GetGradeType/{_SchoolId}")]
+        public async Task<IActionResult> GetGradeType(int _SchoolId)
         {
             GradeTypeDTO? lst = await _context.GradeTypes
-                .Where(x => x.SchoolId == _SchoolID)
+                .Where(x => x.SchoolId == _SchoolId)
                 .Select(sp => new GradeTypeDTO
                 {
                     CreatedBy = sp.CreatedBy,
@@ -76,6 +76,116 @@ namespace DOOR.Server.Controllers.UD
                     SchoolId = sp.SchoolId
                 }).FirstOrDefaultAsync();
             return Ok(lst);
+        }
+
+        [HttpPost]
+        [Route("PostGradeType")]
+        public async Task<IActionResult> PostGradeType([FromBody] GradeTypeDTO _GradeTypeDTO)
+        {
+            try
+            {
+                GradeType c = await _context.GradeTypes.Where(x => x.SchoolId == _GradeTypeDTO.SchoolId).FirstOrDefaultAsync();
+
+                if (c == null)
+                {
+                    c = new GradeType
+                    {
+                        Description = _GradeTypeDTO.Description
+                    };
+                    _context.GradeTypes.Add(c);
+                    await _context.SaveChangesAsync();
+                }
+            }
+
+            catch (DbUpdateException Dex)
+            {
+                List<OraError> DBErrors = ErrorHandling.TryDecodeDbUpdateException(Dex, _OraTranslateMsgs);
+                return StatusCode(StatusCodes.Status417ExpectationFailed, Newtonsoft.Json.JsonConvert.SerializeObject(DBErrors));
+            }
+            catch (Exception ex)
+            {
+                _context.Database.RollbackTransaction();
+                List<OraError> errors = new List<OraError>();
+                errors.Add(new OraError(1, ex.Message.ToString()));
+                string ex_ser = Newtonsoft.Json.JsonConvert.SerializeObject(errors);
+                return StatusCode(StatusCodes.Status417ExpectationFailed, ex_ser);
+            }
+
+            return Ok();
+        }
+
+
+
+
+
+
+
+
+        [HttpPut]
+        [Route("PutGradeType")]
+        public async Task<IActionResult> PutGradeType([FromBody] GradeTypeDTO _GradeTypeDTO)
+        {
+            try
+            {
+                GradeType c = await _context.GradeTypes.Where(x => x.SchoolId == _GradeTypeDTO.SchoolId).FirstOrDefaultAsync();
+
+                if (c != null)
+                {
+                    c.Description = _GradeTypeDTO.Description;
+
+                    _context.GradeTypes.Update(c);
+                    await _context.SaveChangesAsync();
+                }
+            }
+
+            catch (DbUpdateException Dex)
+            {
+                List<OraError> DBErrors = ErrorHandling.TryDecodeDbUpdateException(Dex, _OraTranslateMsgs);
+                return StatusCode(StatusCodes.Status417ExpectationFailed, Newtonsoft.Json.JsonConvert.SerializeObject(DBErrors));
+            }
+            catch (Exception ex)
+            {
+                _context.Database.RollbackTransaction();
+                List<OraError> errors = new List<OraError>();
+                errors.Add(new OraError(1, ex.Message.ToString()));
+                string ex_ser = Newtonsoft.Json.JsonConvert.SerializeObject(errors);
+                return StatusCode(StatusCodes.Status417ExpectationFailed, ex_ser);
+            }
+
+            return Ok();
+        }
+
+
+        [HttpDelete]
+        [Route("DeleteGradeType/{_SchoolId}")]
+        public async Task<IActionResult> DeleteGradeType(int _SchoolId)
+        {
+            try
+            {
+                GradeType c = await _context.GradeTypes.Where(x => x.SchoolId == _SchoolId).FirstOrDefaultAsync();
+
+                if (c != null)
+                {
+                    _context.GradeTypes.Remove(c);
+                    await _context.SaveChangesAsync();
+                }
+            }
+
+            catch (DbUpdateException Dex)
+            {
+                List<OraError> DBErrors = ErrorHandling.TryDecodeDbUpdateException(Dex, _OraTranslateMsgs);
+                return StatusCode(StatusCodes.Status417ExpectationFailed, Newtonsoft.Json.JsonConvert.SerializeObject(DBErrors));
+            }
+            catch (Exception ex)
+            {
+                _context.Database.RollbackTransaction();
+                List<OraError> errors = new List<OraError>();
+                errors.Add(new OraError(1, ex.Message.ToString()));
+                string ex_ser = Newtonsoft.Json.JsonConvert.SerializeObject(errors);
+                return StatusCode(StatusCodes.Status417ExpectationFailed, ex_ser);
+            }
+
+            return Ok();
         }
     }
 }
